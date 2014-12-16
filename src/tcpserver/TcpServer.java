@@ -10,12 +10,10 @@ public class TcpServer {
     
     public static void main(String[] args) {
         System.out.println("Starting RedeRia TCP Server");
-
+        
+        //start server!
         R1 = new TcpServerRunnable(3333);
         R1.start();
-
-        //SerialMonitorRunnable R2 = new SerialMonitorRunnable();
-        //R2.start();
     }
 }
 

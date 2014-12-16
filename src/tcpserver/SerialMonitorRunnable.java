@@ -6,7 +6,6 @@
 package tcpserver;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -17,6 +16,7 @@ public class SerialMonitorRunnable implements Runnable {
     private String threadName = "Serial Monitor";
     private Thread t;
     public ArrayList<TcpClientHandler> clientsArray;
+	private Scanner sc;
 
     SerialMonitorRunnable(){
         System.out.println("Creating " +  threadName );
@@ -25,7 +25,7 @@ public class SerialMonitorRunnable implements Runnable {
 
     public void run() {
         System.out.println("Running " +  threadName );
-        Scanner sc = new Scanner(System.in);
+        sc = new Scanner(System.in);
         String xxx = null;
         
         //TO-DO Here listen to serial port
