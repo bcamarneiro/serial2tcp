@@ -48,6 +48,15 @@ public class TcpServerRunnable implements Runnable {
             Logger.getLogger(TcpServerRunnable.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void closeServerSocket(){
+    	try {
+			welcomeSocket.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
 
     @Override
     public void run() {
@@ -63,6 +72,7 @@ public class TcpServerRunnable implements Runnable {
                 } 
                 catch (IOException ex) {
                     Logger.getLogger(TcpServerRunnable.class.getName()).log(Level.SEVERE, null, ex);
+                    closeServerSocket();
                     break;
                 }
             }
@@ -71,8 +81,7 @@ public class TcpServerRunnable implements Runnable {
         System.out.println("Thread " +  threadName + " exiting.");
     }
 
-    public void start ()
-    {
+    public void start() {
         System.out.println("Starting " +  threadName );
         if (t == null)
         {
