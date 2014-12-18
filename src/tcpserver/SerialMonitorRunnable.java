@@ -38,7 +38,7 @@ public class SerialMonitorRunnable implements Runnable, SerialPortEventListener 
 	private BufferedReader input;
 	private OutputStream output;
 	private static final int TIME_OUT = 2000;
-	private static final int DATA_RATE = 38400;
+	private static final int DATA_RATE = 1200;//38400;
 	
 	private String inputLine = new String();
 
@@ -122,9 +122,11 @@ public class SerialMonitorRunnable implements Runnable, SerialPortEventListener 
 					int data = serialPort.getInputStream().read();
 
 					if(data == 13) {
-						TcpServer.R1.notifyClients(inputLine);
-						System.out.println(inputLine);
-						inputLine = "";
+						if(!inputLine.contains("RESET")){		
+							TcpServer.R1.notifyClients(inputLine);
+							System.out.println(inputLine);
+						}
+						inputLine = "";						
 					}
 					else {
 						inputLine += (char)data;
