@@ -6,13 +6,14 @@
 package tcpserver;
 
 public class TcpServer {
-    static TcpServerRunnable R1;    
+    static TcpServerRunnable R1;
+    static boolean DEV = false;
     
     public static void main(String[] args) {
         System.out.println("Starting TCP Server");
         
         //start server!
-        R1 = new TcpServerRunnable(3333);
+        R1 = new TcpServerRunnable(3333, DEV);
         R1.start();
     }
 }

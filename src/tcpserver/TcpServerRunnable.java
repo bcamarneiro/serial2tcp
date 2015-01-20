@@ -22,7 +22,9 @@ public class TcpServerRunnable implements Runnable {
     private ServerSocket welcomeSocket;
     private Boolean readyToRun = false;
     private SerialMonitorRunnable serialMonitor;
+    private KeyboardMonitorRunnable keyboardMonitor;
     public ArrayList<TcpClientHandler> clientsArray;
+    private boolean DEV;
     
     public void notifyClients(String txt){
         if(clientsArray.size() > 0){
@@ -35,11 +37,19 @@ public class TcpServerRunnable implements Runnable {
         }
     }
 
-    TcpServerRunnable(int serverPort){
+    TcpServerRunnable(int serverPort, boolean DEVMODE){
         System.out.println("Creating " +  threadName );
+        DEV = DEVMODE;
         clientsArray = new ArrayList<>();
-        serialMonitor = new SerialMonitorRunnable();
-        serialMonitor.start();
+        
+        if(DEV){
+        	keyboardMonitor = new KeyboardMonitorRunnable();
+	        keyboardMonitor.start();
+        }
+        else{
+	        serialMonitor = new SerialMonitorRunnable();
+	        serialMonitor.start();
+        }
         
         try {
             welcomeSocket = new ServerSocket(serverPort);
