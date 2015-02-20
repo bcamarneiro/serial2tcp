@@ -7,7 +7,7 @@ package tcpserver;
 
 public class TcpServer {
     static TcpServerRunnable R1;
-    static boolean DEV = false;
+    static boolean DEV = true;
     
     public static void main(String[] args) {
         System.out.println("Starting TCP Server");
